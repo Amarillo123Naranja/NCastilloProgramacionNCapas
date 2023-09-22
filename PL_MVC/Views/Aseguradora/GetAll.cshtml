@@ -1,0 +1,70 @@
+﻿@model ML.Aseguradora
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ASEGURADORA</h2>
+
+
+
+<hr />
+
+<a href="@Url.Action("Form", "Aseguradora")" class="btn btn-outline-warning">Agregar</a>
+
+<hr />
+
+
+<div class="container">
+
+        <table class="table table-danger table-striped">
+
+            <thead class="table-danger">
+
+                <tr class="table-warning">
+
+                    <th>ID Aseguradora</th>
+                    <th>Nombre</th>
+                    <th>Fecha de Creacion</th>
+                    <th>Fecha de Modificacion</th>
+                    <th>Id Usuario</th>
+                    <th>Nombre Usuario</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
+
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            @foreach (ML.Aseguradora aseguradora in Model.Aseguradoras)
+            {
+
+                <tr>
+                    <td>@aseguradora.IdAseguradora</td>
+                    <td>@aseguradora.Nombre</td>
+                    <td>@aseguradora.FechaCreacion</td>
+                    <td>@aseguradora.FechaModificacion</td>
+                    <td>@aseguradora.Usuario.IdUsuario</td>
+                    <td>@aseguradora.Usuario.Nombre</td>
+                    <td><a class="btn btn-outline-warning" href="@Url.Action("Form", "Aseguradora", new { IdAseguradora = aseguradora.IdAseguradora })">Actualizar</a></td>
+                    <td><a class="btn btn-outline-info" href="@Url.Action("Delete", "Aseguradora", new { IdAseguradora = aseguradora.IdAseguradora })" onclick="return confirm('Estas seguro que deseas ELIMINAR este REGISTRO');">Eliminar</a></td>
+
+
+
+                </tr>
+
+            }
+
+
+                </tbody>
+            
+
+       </table>
+            
+</div>
+
+
+             

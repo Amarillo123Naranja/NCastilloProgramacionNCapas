@@ -1,0 +1,127 @@
+﻿@model ML.Empleado
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Formulario</h2>
+
+<h4 class="text-center">INGRESA LOS DATOS REQUERIDOS</h4>
+
+
+@using (Html.BeginForm("Form", "Empleado", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+   
+    @Html.HiddenFor(model => model.Accion)
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.NumeroEmpleado)
+            @Html.TextBoxFor(model => model.NumeroEmpleado, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Rfc)
+            @Html.TextBoxFor(model => model.Rfc, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Nombre)
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+        </div>
+    </div>
+    <hr />
+    <br />
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.ApellidoPaterno)
+            @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.ApellidoMaterno)
+            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4>">
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <hr />
+    <br />
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Telefono)
+            @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.FechaNacimiento)
+            @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Nss)
+            @Html.TextBoxFor(model => model.Nss, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <hr />
+    <br />
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.FechaIngreso)
+            @Html.TextBoxFor(model => model.FechaIngreso, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Empresa.IdEmpresa)
+            @Html.DropDownListFor(model => model.Empresa.IdEmpresa, new SelectList(Model.Empresa.Empresas, "IdEmpresa", "Nombre"), "Seleccione la empresa correspondiente", new { @class = "form-control" })
+        </div>
+    </div>
+
+    <hr />
+    <br />
+
+   
+        @Html.HiddenFor(model => model.Foto)
+
+        <img id="img" src="https://jarroba.com/foro/?qa=image&qa_blobid=11099619010778415938&qa_size=200" width="50" height="50" />
+
+        <input id="Foto" name="Foto" type="file" class="form-control" onchange="ValidarImagen(), visualizarImagen(this)" />
+
+ 
+
+    <button class="btn btn-success" type="submit">GUARDAR</button>
+    <a class="btn btn-danger" href="@Url.Action("GetAll", "Empleado")">REGRESAR</a>
+
+
+}
+
+<script>
+
+    function ValidarImagen() {
+        var extensionesPermitidas = ['jpeg', 'jpg', 'png'];
+        var extensionArchivo = document.getElementById('Foto').value.split('.').pop().toLowerCase();
+        var isValidFile = false; //saber si es valida o no es valida
+        for (var index in extensionesPermitidas) {
+            if (extensionArchivo === extensionesPermitidas[index]) {
+                isValidFile = true;
+                break;
+            }
+        }
+        if (!isValidFile) {
+            alert('Las extensiones permitidas son : *.' + extensionesPermitidas.join(', *.'));
+            $("#Foto").val("")
+        }
+        return isValidFile;
+
+    }
+    function visualizarImagen(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

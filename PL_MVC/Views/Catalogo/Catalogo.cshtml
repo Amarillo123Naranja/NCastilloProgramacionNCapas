@@ -1,0 +1,39 @@
+﻿@model ML.Empleado
+@{
+    ViewBag.Title = "Catalogo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Catalogo Empleados</h2>
+
+<hr/>
+<br/>
+
+<div class="row">
+    @foreach (ML.Empleado empleado in Model.Empleados)
+    {
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://es.calcuworld.com/wp-content/uploads/sites/2/2019/09/generador-de-nombres-de-usuario.png" class="card-img-top" alt="Hola">
+                <div class="card-body">
+                    <h5 class="card-title">@empleado.Nombre</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@empleado.NumeroEmpleado</li>
+                    <li class="list-group-item">@empleado.Email</li>
+                    <li class="list-group-item">@empleado.Telefono</li>
+                </ul>
+                <div class="card-body">
+                    <a href="@Url.Action("DependienteGetById", "Dependiente", new {NumeroEmpleado = empleado.NumeroEmpleado})" class="card-link">Dependientes</a>
+                    <a href="@Url.Action("GetAll", "Empleado")" class="card-link">Mas Informacion</a>
+                    <br />
+                    <hr />
+                    <br />
+                </div>
+            </div>
+        </div>
+       
+    }
+    </div>
+
+

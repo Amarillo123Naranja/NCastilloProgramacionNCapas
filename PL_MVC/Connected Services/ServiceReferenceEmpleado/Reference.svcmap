@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="495d39f7-01f3-4dea-99d5-65434cf57a4a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:49826/ServiceEmpleado.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceEmpleado.disco" MetadataType="Disco" ID="f6169a0f-0fb3-431d-8330-21b5a9a95e61" SourceId="1" SourceUrl="http://localhost:49826/ServiceEmpleado.svc?disco" />
+    <MetadataFile FileName="ServiceEmpleado.xsd" MetadataType="Schema" ID="bc215832-7903-4f89-ad75-abfeed018ef4" SourceId="1" SourceUrl="http://localhost:49826/ServiceEmpleado.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceEmpleado1.xsd" MetadataType="Schema" ID="cf9f550c-6c6c-4571-b4de-b6db36d1bf40" SourceId="1" SourceUrl="http://localhost:49826/ServiceEmpleado.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceEmpleado2.xsd" MetadataType="Schema" ID="b5f34c39-d4d6-43f9-bb87-87ea1dc04410" SourceId="1" SourceUrl="http://localhost:49826/ServiceEmpleado.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceEmpleado3.xsd" MetadataType="Schema" ID="0dcd4260-b826-4861-841e-3b4314f86b2c" SourceId="1" SourceUrl="http://localhost:49826/ServiceEmpleado.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceEmpleado.wsdl" MetadataType="Wsdl" ID="0bef8868-d0a5-4191-9358-3ed4e715248a" SourceId="1" SourceUrl="http://localhost:49826/ServiceEmpleado.svc?wsdl" />
+    <MetadataFile FileName="ServiceEmpleado4.xsd" MetadataType="Schema" ID="70cdfe22-266a-406b-96a4-6e204c7c3f10" SourceId="1" SourceUrl="http://localhost:49826/ServiceEmpleado.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceEmpleado5.xsd" MetadataType="Schema" ID="3a232ace-5354-4b09-848c-83d76455698e" SourceId="1" SourceUrl="http://localhost:49826/ServiceEmpleado.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

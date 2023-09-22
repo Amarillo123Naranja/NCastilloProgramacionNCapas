@@ -1,0 +1,356 @@
+﻿@model ML.Usuario
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<h1 class="text-center">FORMULARIO</h1>
+<h4 class="text-center">INGRESA LOS DATOS DEL USUARIO</h4>
+<hr />
+
+
+
+@using (Html.BeginForm("Form", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.HiddenFor(model => model.IdUsuario)
+
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Nombre)
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @onkeypress = "return lettersOnly(event, 'lblErrorNombre')" })
+            <label style="color:darkred"> @Html.ValidationMessageFor(model => model.Nombre)</label>
+            <label id="lblErrorNombre"></label>
+        </div>
+
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.ApellidoPaterno)
+            @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @onkeypress = "return lettersOnly(event, 'lblErrorApellidoPaterno')" })
+            <label style="color:darkred"> @Html.ValidationMessageFor(model => model.ApellidoPaterno)</label>
+            <label id="lblErrorApellidoPaterno"></label>
+        </div>
+
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.ApellidoMaterno)
+            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @onkeypress = "return lettersOnly(event, 'lblErrorApellidoMaterno')" })
+            <label id="lblErrorApellidoMaterno"></label>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Correo)
+            @Html.TextBoxFor(model => model.Correo, new { @class = "form-control" })
+            <label style="color:darkred">@Html.ValidationMessageFor(model => model.Correo)</label>
+        </div>
+       
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Sexo)
+            @Html.TextBoxFor(model => model.Sexo, new { @class = "form-control" })
+            <label style="color:darkred">@Html.ValidationMessageFor(model => model.Sexo) </label>
+        </div>
+        
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Telefono)
+            @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @onkeypress = "return numbersOnly(event, 'lblErrorTelefono')" })
+            <label style="color:darkred">@Html.ValidationMessageFor(model => model.Telefono) </label>
+            <label id="lblErrorTelefono"></label>
+        </div>
+       
+        <br/>
+        <br/>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Celular)
+            @Html.TextBoxFor(model => model.Celular, new { @class = "form-control", @onkeypress = "return numbersOnly(event, 'lblErrorCelular')" })
+            <label style="color:darkred">@Html.ValidationMessageFor(model => model.Celular)</label>
+            <label id="lblErrorCelular"></label>
+        </div>
+        
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.FechaNacimiento)
+            @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "form-control", @placeholder = "MM-DD-YYYY" })
+            <label style="color:darkred">@Html.ValidationMessageFor(model => model.FechaNacimiento)</label>
+        </div>
+       
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Curp)
+            @Html.TextBoxFor(model => model.Curp, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Rol.IdRol)
+            @Html.DropDownListFor(model => model.Rol.IdRol, new SelectList(Model.Rol.Roles, "IdRol", "Nombre"), "Selecciona el Rol Correspondiente", new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.UserName)
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Contraseña)
+            @Html.TextBoxFor(model => model.Contraseña, new { @class = "form-control" })
+        </div>
+
+    </div>
+    <br/>
+    <hr />
+
+    <h3 class="text-center">INFORMACION DIRECCION</h3>
+
+    <hr />
+    <br/>
+
+    //PAISES
+
+
+    @Html.LabelFor(model => model.Direccion.Colonia.Municipio.Estado.Pais.IdPais)
+    @Html.DropDownListFor(model => model.Direccion.Colonia.Municipio.Estado.Pais.IdPais, new SelectList(Model.Direccion.Colonia.Municipio.Estado.Pais.Paises, "IdPais", "Nombre"), "Selecciona un Pais", new { @class = "form-control", @id = "ddlPais" })
+
+
+    //ESTADOS
+
+    @Html.LabelFor(model => model.Direccion.Colonia.Municipio.Estado.IdEstado)
+
+
+    if (Model.Direccion.Colonia.Municipio.Estado.Estados == null)
+    {
+        @Html.DropDownListFor(model => model.Direccion.Colonia.Municipio.Estado.IdEstado, new SelectList(String.Empty), "Selecciona un pais Primero", new { @class = "form-control", @id = "ddlEstado" })
+    }
+    else
+    {
+
+        @Html.DropDownListFor(model => model.Direccion.Colonia.Municipio.Estado.IdEstado, new SelectList(Model.Direccion.Colonia.Municipio.Estado.Estados, "IdEstado", "Nombre"), "Selecciona un Estado", new { @class = "form-control", @id = "ddlEstado" })
+
+    }
+
+
+    //MUNICIPIOS
+    @Html.LabelFor(model => model.Direccion.Colonia.Municipio.IdMunicipio)
+
+
+    if (Model.Direccion.Colonia.Municipio.Municipios == null)
+    {
+        @Html.DropDownListFor(model => model.Direccion.Colonia.Municipio.IdMunicipio, new SelectList(String.Empty), "Selecciona un Estado Primero", new { @class = "form-control", @id = "ddlMunicipio" })
+    }
+    else
+    {
+
+        @Html.DropDownListFor(model => model.Direccion.Colonia.Municipio.IdMunicipio, new SelectList(Model.Direccion.Colonia.Municipio.Municipios, "IdMunicipio", "Nombre"), "Selecciona un Municipio", new { @class = "form-control", @id = "ddlMunicipio" })
+
+    }
+
+
+    //COLONIAS
+
+    @Html.LabelFor(model => model.Direccion.Colonia.IdColonia)
+
+
+    if (Model.Direccion.Colonia.Colonias == null)
+    {
+        @Html.DropDownListFor(model => model.Direccion.Colonia.IdColonia, new SelectList(String.Empty), "Selecciona un Municipio Primero", new { @class = "form-control", @id = "ddlColonia" })
+    }
+    else
+    {
+
+        @Html.DropDownListFor(model => model.Direccion.Colonia.IdColonia, new SelectList(Model.Direccion.Colonia.Colonias, "IdColonia", "Nombre"), "Selecciona una Colonia", new { @class = "form-control", @id = "ddlColonia" })
+
+    }
+
+
+    @Html.LabelFor(model => model.Direccion.Calle)
+    @Html.TextBoxFor(model => model.Direccion.Calle, new { @class = "form-control" })
+
+    @Html.LabelFor(model => model.Direccion.NumeroExterior)
+    @Html.TextBoxFor(model => model.Direccion.NumeroExterior, new { @class = "form-control" })
+
+    @Html.LabelFor(model => model.Direccion.NumeroInterior)
+    @Html.TextBoxFor(model => model.Direccion.NumeroInterior, new { @class = "form-control" })
+    <br />
+    <br />
+
+    @Html.HiddenFor(model => model.Imagen)
+
+
+    <img id="img" src="https://cultura-sorda.org/wp-content/uploads/2015/02/Usuario-Vacio.png" width="50" height="50" />
+
+    <input id="Imagen" name="Imagen" type="file" class="form-control" onchange="ValidarImagen(), visualizarImagen(this)" />
+
+
+    <br />
+    <br />
+    <hr />
+
+    <button class="btn btn-success" type="submit">GUARDAR</button>
+    <a class="btn btn-danger" href="@Url.Action("GetAll", "Usuario")">REGRESAR</a>
+
+    <hr />
+
+
+
+    //ESTADOS
+}
+
+
+
+
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    $("#ddlPais").change(function () {
+        $("#ddlEstado").empty();
+        $.ajax({
+            url: "http://localhost:60932/Usuario/EstadoGetByIdPais", //direccion donde hara la peticion
+            type: "GET", //verbo del controlador
+            dataType: "json", //formato para la información
+            data: { IdPais: $("#ddlPais").val() }, //los datos que necesitemos enviar
+            success: function (result) {
+                $("#ddlEstado").append('<option value="0">' + 'Seleccione una opción' + '</option>');
+                $.each(result, function (i, result) {
+                    $("#ddlEstado").append('<option value="'
+                        + result.IdEstado + '">'
+                        + result.Nombre + '</option>');
+                });
+            },
+            error: function (error) {
+                alert('Ocurrio un error al consultar los estados del pais');
+            }
+        });
+
+    });
+
+
+    //MUNICIPIOS
+
+</script>
+
+
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+
+    $("#ddlEstado").change(function () {
+        $("#ddlMunicipio").empty();
+        $.ajax({
+            url: "http://localhost:60932/Usuario/MunicipioGetByIdEstado", //direccion donde hara la peticion
+            type: "GET", //verbo del controlador
+            dataType: "json", //formato para la información
+            data: { IdEstado: $("#ddlEstado").val() }, //los datos que necesitemos enviar
+            success: function (result) {
+                $("#ddlMunicipio").append('<option value="0">' + 'Seleccione una opción' + '</option>');
+                $.each(result, function (i, result) {
+                    $("#ddlMunicipio").append('<option value="'
+                        + result.IdMunicipio + '">'
+                        + result.Nombre + '</option>');
+                });
+            },
+            error: function (error) {
+                alert('Ocurrio un error al consultar los estados del pais');
+            }
+        });
+
+    });
+
+
+    //COLONIAS
+</script>
+
+
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    $("#ddlMunicipio").change(function () {
+        $("#ddlColonia").empty();
+        $.ajax({
+            url: "http://localhost:60932/Usuario/ColoniaGetByIdMunicipio", //direccion donde hara la peticion
+            type: "GET", //verbo del controlador
+            dataType: "json", //formato para la información
+            data: { IdMunicipio: $("#ddlMunicipio").val() }, //los datos que necesitemos enviar
+            success: function (result) {
+                $("#ddlColonia").append('<option value="0">' + 'Seleccione una opción' + '</option>');
+                $.each(result, function (i, result) {
+                    $("#ddlColonia").append('<option value="'
+                        + result.IdColonia + '">'
+                        + result.Nombre + '</option>');
+                });
+            },
+            error: function (error) {
+                alert('Ocurrio un error al consultar los estados del pais');
+            }
+        });
+
+    });
+
+    function ValidarImagen() {
+        var extensionesPermitidas = ['jpeg', 'jpg', 'png'];
+        var extensionArchivo = document.getElementById('Imagen').value.split('.').pop().toLowerCase();
+        var isValidFile = false; //saber si es valida o no es valida
+        for (var index in extensionesPermitidas) {
+            if (extensionArchivo === extensionesPermitidas[index]) {
+                isValidFile = true;
+                break;
+            }
+        }
+        if (!isValidFile) {
+            alert('Las extensiones permitidas son : *.' + extensionesPermitidas.join(', *.'));
+            $("#Imagen").val("")
+        }
+        return isValidFile;
+
+    }
+    function visualizarImagen(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+    function lettersOnly(e, lbl) {
+        var charCode = e.keyCode;
+
+        if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 8) {
+            $('#' + lbl).text("")
+            return true;
+        }
+        else {
+            $('#' + lbl).text("Solo se aceptan letras")
+            $('#' + lbl).css('color', 'red');
+            return false;
+        }
+    }
+
+
+    function numbersOnly(e, lbl) {
+        var charCode = e.keyCode;
+
+        if (charCode > 47 && charCode < 58) {
+            $('#' + lbl).text("")
+            return true;
+        }
+        else {
+            $('#' + lbl).text("Solo se aceptan numeros")
+            $('#' + lbl).css('color', 'red');
+            return false;
+        }
+    }
+
+
+
+
+</script>

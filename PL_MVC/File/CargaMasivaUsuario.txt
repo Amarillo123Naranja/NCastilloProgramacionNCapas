@@ -1,0 +1,13 @@
+UserName|Nombre|ApellidoP|ApellidoM|Correo|Contraseña|Sexo|Telefono|Celular|FechaNacimiento|Curp|IdRol|Calle|NumeroE|NumeroI|IdCol|Imagen|
+Amarillo|Nelly|Sanchez|Castillo|Nelly@gmail.com|1234|M|5589632147|451236987|06-06-1997|SACN970618H53|1|Tarascos|3|1|1|
+Verde|Guillermo|Alonso|Luna|Lunita@gmail.com|1234|H|568974123|12365478|04-14-2001|LOPINH142536MLK|2|La primavera|2|3|2|
+Rojo|Pedro|Contreras|Guzman|Guz@gmail.com|45645|H|568974123|12365478|04-14-2001|LOPINH142536MLK|2|La primavera|2|3|2|
+Azul|Martin|Perez|Castro|GLLO@gmail.com|45678|H|568974123|12365478|04-14-2001|LOPINH142536MLK|2|La primavera|2|3|2|
+Rosa|Anahi|Hernandez|Ortega|Ortega@gmail.com|45647|M|568974123|12365478|04-14-2001|LOPINH142536MLK|2|La primavera|2|3|2|
+Naranja|Gabriela|Lopez|Watson|WA89@gmail.com|12456|M|568974123|12365478|04-14-2001|LOPINH142536MLK|2|La primavera|2|3|2|
+Gris|Ivonne|Castañeda|Lopez|Lopita@gmail.com|124556|M|568974123|12365478|04-14-2001|LOPINH142536MLK|2|La primavera|2|3|2|
+Blanco|Cesar|Alpizar|Carmino|Carminito@gmail.com|456896|H|568974123|12365478|04-14-2001|LOPINH142536MLK|2|La primavera|2|3|2|
+Negro|Joaquin|Ruiz|Lozano|LOza2@gmail.com|45678|H|568974123|12365478|04-14-2001|LOPINH142536MLK|2|La primavera|2|3|2|
+Turquesa|Clara|Nolasco|Guzman|Guza@gmail.com|45674|M|568974123|12365478|04-14-2001|LOPINH142536MLK|2|La primavera|2|3|2|
+Colorado|Araceli|Rojo|Sanchez|Sanda@gmail.com|45986|M|568974123|12365478|04-14-2001|LOPINH142536MLK|2|La primavera|2|3|2|
+Cielo|Emiliano|Gomez|Laguna|tequila@gmail.com|45456|H|568974123|12365478|04-14-2001|LOPINH142536MLK|2|La primavera|2|3|2|

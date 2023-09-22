@@ -1,0 +1,75 @@
+﻿@model ML.Dependiente
+@{
+    ViewBag.Title = "DependienteGetById";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Dependiente</h2>
+
+<hr />
+
+<a href="@Url.Action("Form", "Dependiente")" class="btn btn-outline-warning">Agregar</a>
+
+<hr />
+
+
+<div class="container">
+
+    <table class="table table-danger table-striped">
+
+        <thead class="table-danger">
+
+            <tr class="table-warning">
+
+                <th>ID Dependiente</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Fecha Nacimiento</th>
+                <th>Estado civil</th>
+                <th>Genero</th>
+                <th>Telefono</th>
+                <th>RFC</th>
+                <th>Numero Empleado</th>
+                <th>Actualizar</th>
+                <th>Eliminar</th>
+
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (ML.Dependiente dependiente in Model.Dependientes)
+            {
+
+                <tr>
+                    <td>@dependiente.IdDependiente</td>
+                    <td>@dependiente.Nombre</td>
+                    <td>@dependiente.ApellidoPaterno</td>
+                    <td>@dependiente.ApellidoMaterno</td>
+                    <td>@dependiente.FechaNacimiento</td>
+                    <td>@dependiente.EstadoCivil</td>
+                    <td>@dependiente.Genero</td>
+                    <td>@dependiente.Telefono</td>
+                    <td>@dependiente.Rfc</td>
+                    <td>@dependiente.Empleado.NumeroEmpleado</td>
+                    <td><a class="btn btn-outline-warning" href="@Url.Action("Form", "Dependiente", new { IdDependiente = dependiente.IdDependiente })">Actualizar</a></td>
+                    <td><a class="btn btn-outline-info" href="@Url.Action("Delete", "Dependiente", new { IdDependiente = dependiente.IdDependiente })" onclick="return confirm('Estas seguro que deseas ELIMINAR este REGISTRO');">Eliminar</a></td>
+
+
+
+                </tr>
+
+            }
+
+
+        </tbody>
+
+
+    </table>
+
+</div>
+
+<a href="@Url.Action("Catalogo", "Catalogo")" class="btn btn-outline-warning">Regresar</a>

@@ -1,0 +1,116 @@
+﻿@model ML.Empleado
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Empleados</h2>
+
+@using (Html.BeginForm("GetAll", "Empleado", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Empresa.IdEmpresa)
+            @Html.DropDownListFor(model => model.Empresa.IdEmpresa, new SelectList(Model.Empresa.Empresas, "IdEmpresa", "Nombre"), "Selecciona una empresa", new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Nombre)
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+        </div>
+
+
+    </div>
+    <br />
+
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+
+
+
+}
+
+
+<a href="@Url.Action("Form", "Empleado")" class="btn btn-outline-danger">Agregar</a>
+
+<div class="container">
+
+    <table class="table table-danger table-striped">
+
+        <thead class="table-danger">
+
+            <tr class="table-warning">
+
+                <th>Numero Empleado</th>
+                <th>RFC</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Fecha Nacimiento</th>
+                <th>NSS</th>
+                <th>Fecha Ingreso</th>
+                <th>Foto</th>
+                <th>Id Empresa</th>
+                <th>Nombre Empresa</th>
+                <th>Actualizar</th>
+                <th>Eliminar</th>
+
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (ML.Empleado empleado in Model.Empleados)
+            {
+
+                <tr>
+                    <td>@empleado.NumeroEmpleado</td>
+                    <td>@empleado.Rfc</td>
+                    <td>@empleado.Nombre</td>
+                    <td>@empleado.ApellidoPaterno</td>
+                    <td>@empleado.ApellidoMaterno</td>
+                    <td>@empleado.Email</td>
+                    <td>@empleado.Telefono</td>
+                    <td>@empleado.FechaNacimiento</td>
+                    <td>@empleado.Nss</td>
+                    <td>@empleado.FechaIngreso</td>
+
+
+                    <td>
+
+
+                        @if (empleado.Foto == "" || empleado.Foto == null)
+                        {
+                            <img src="https://jarroba.com/foro/?qa=image&qa_blobid=11099619010778415938&qa_size=200" width="50" height="50" />
+                        }
+                        else
+                        {
+                            <img src="data:image/*;base64,@empleado.Foto" width="50" height="50"/>
+                        }
+                    </td>
+
+
+                    <td>@empleado.Empresa.IdEmpresa</td>
+                    <td>@empleado.Empresa.Nombre</td>
+                    <td><a class="btn btn-warning" href="@Url.Action("Form", "Empleado", new { NumeroEmpleado= empleado.NumeroEmpleado })">Actualizar</a></td>
+                    <td><a class="btn btn-info" href="@Url.Action("Delete", "Empleado", new { NumeroEmpleado = empleado.NumeroEmpleado })" onclick="return confirm('Estas seguro que deseas ELIMINAR este REGISTRO');">Eliminar</a></td>
+
+
+
+                </tr>
+
+            }
+
+
+        </tbody>
+
+
+    </table>
+
+</div>
+
+

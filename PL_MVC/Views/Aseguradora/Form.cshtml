@@ -1,0 +1,42 @@
+﻿@model ML.Aseguradora
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Formulario</h2>
+
+<h4 class="text-center">INGRESA LOS DATOS REQUERIDOS</h4>
+
+@using (Html.BeginForm("Form", "Aseguradora", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    @Html.HiddenFor(model => model.IdAseguradora)
+
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Nombre)
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.FechaCreacion)
+            @Html.TextBoxFor(model => model.FechaCreacion, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.FechaModificacion)
+            @Html.TextBoxFor(model => model.FechaModificacion, new { @class = "form-control" })
+        </div>
+    </div>
+
+    @Html.LabelFor(model => model.Usuario.IdUsuario)
+    @Html.DropDownListFor(model => model.Usuario.IdUsuario, new SelectList(Model.Usuario.Usuarios, "IdUsuario", "Nombre"), "Selecciona el Usuario Correspondiente", new { @class = "form-control" })
+
+
+
+    <button class="btn btn-success" type="submit">GUARDAR</button>
+    <a class="btn btn-danger" href="@Url.Action("GetAll", "Aseguradora")">REGRESAR</a>
+
+}
