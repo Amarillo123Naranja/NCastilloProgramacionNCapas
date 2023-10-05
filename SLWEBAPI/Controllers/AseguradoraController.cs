@@ -7,10 +7,11 @@ using System.Web.Http;
 
 namespace SLWEBAPI.Controllers
 {
+    [RoutePrefix("aseguradora")]
     public class AseguradoraController : ApiController
     {
 
-        [Route("api/aseguradora/add")]
+        [Route("")]
         [HttpPost]
 
         public IHttpActionResult Add(ML.Aseguradora aseguradora)
@@ -28,12 +29,14 @@ namespace SLWEBAPI.Controllers
 
         }
 
-        [Route("api/aseguradora/update")]
-        [HttpPost]
+        [Route("{IdAseguradora}")]
+        [HttpPut]
 
-        public IHttpActionResult Update(ML.Aseguradora Aseguradora)
+        public IHttpActionResult Update(int IdAseguradora, [FromBody] ML.Aseguradora aseguradora)
         {
-            ML.Result result = BL.Aseguradora.Update(Aseguradora);  
+
+            aseguradora.IdAseguradora = IdAseguradora;
+            ML.Result result = BL.Aseguradora.Update(aseguradora);  
 
             if (result.Correct)
             {
@@ -46,8 +49,8 @@ namespace SLWEBAPI.Controllers
             
         }
 
-        [Route("api/aseguradora/delete")]
-        [HttpGet] 
+        [Route("{IdAseguradora}")]
+        [HttpDelete] 
 
         public IHttpActionResult Delete(int IdAseguradora)
         {
@@ -64,7 +67,7 @@ namespace SLWEBAPI.Controllers
             }
         }
 
-        [Route("api/aseguradora/getall")]
+        [Route("getall")]
         [HttpGet]
         
         public IHttpActionResult GetAll()
@@ -81,21 +84,21 @@ namespace SLWEBAPI.Controllers
 
         }
 
-        //[Route("api/aseguradora/getbyid")]
-        //[HttpPost]   
+        [Route("{IdAseguradora}")]
+        [HttpPost]
 
-        //public IHttpActionResult GetById(int IdAseguradora)
-        //{
-        //    ML.Result result = BL.Aseguradora.GetById(IdAseguradora);   
+        public IHttpActionResult GetById(int IdAseguradora)
+        {
+            ML.Result result = BL.Aseguradora.GetById(IdAseguradora);
 
-        //    if(result.Correct)
-        //    {
-        //        return Content(HttpStatusCode.OK, result);
-        //    }
-        //    else
-        //    {
-        //        return Content{HttpStatusCode.BadRequest, result};
-        //    }
-        //}
+            if (result.Correct)
+            {
+                return Content(HttpStatusCode.OK, result);
+            }
+            else
+            {
+                return Content(HttpStatusCode.BadRequest, result);
+            }
+        }
     }
 }

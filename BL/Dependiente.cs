@@ -79,10 +79,11 @@ namespace BL
             {
                 using(DLEF.NCastilloProgramacionNCapasEntities context = new DLEF.NCastilloProgramacionNCapasEntities())
                 {
-                    var query = context.DependienteAdd(dependiente.Nombre, dependiente.ApellidoPaterno, dependiente.ApellidoMaterno, dependiente.FechaNacimiento, dependiente.EstadoCivil, dependiente.Genero, dependiente.Telefono, dependiente.Rfc,dependiente.Empleado.NumeroEmpleado);
+                    var query = context.DependienteAdd(dependiente.Nombre, dependiente.ApellidoPaterno, dependiente.ApellidoMaterno, dependiente.FechaNacimiento, dependiente.EstadoCivil, dependiente.Genero, dependiente.Telefono, dependiente.Rfc, dependiente.Empleado.NumeroEmpleado);
                     if(query > 0)
                     {
                         result.Correct = true;
+                        
 
                     }
                     else
@@ -115,7 +116,7 @@ namespace BL
             {
                 using(DLEF.NCastilloProgramacionNCapasEntities context = new DLEF.NCastilloProgramacionNCapasEntities())
                 {
-                    int filasAfectadas = context.DependienteUpdate(dependiente.IdDependiente, dependiente.Nombre, dependiente.ApellidoPaterno, dependiente.ApellidoMaterno, dependiente.FechaNacimiento, dependiente.EstadoCivil, dependiente.Genero, dependiente.Telefono, dependiente.Rfc,dependiente.Empleado.NumeroEmpleado);
+                    int filasAfectadas = context.DependienteUpdate(dependiente.IdDependiente, dependiente.Nombre, dependiente.ApellidoPaterno, dependiente.ApellidoMaterno, dependiente.FechaNacimiento, dependiente.EstadoCivil, dependiente.Genero, dependiente.Telefono, dependiente.Rfc);
 
                     if(filasAfectadas > 0)
                     {

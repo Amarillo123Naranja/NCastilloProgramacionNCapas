@@ -1,15 +1,20 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using ML;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace SLWEBAPI.Controllers
 {
+
+    [RoutePrefix("api/empleado")]
     public class EmpleadoController : ApiController
     {
-        [Route("api/empleado/add")]
+        [Route("")]
         [HttpPost]
         public IHttpActionResult Add(ML.Empleado empleado)
         {
@@ -26,11 +31,13 @@ namespace SLWEBAPI.Controllers
 
         }
 
-        [Route("api/empleado/update")]
-        [HttpPost]  
+        [Route("{NumeroEmpleado}")]
+        [HttpPut]  
 
-        public IHttpActionResult Update(ML.Empleado empleado)
+        public IHttpActionResult Update(string NumeroEmpleado, [FromBody] ML.Empleado empleado)
         {
+
+            empleado.NumeroEmpleado = NumeroEmpleado;   
             ML.Result result = BL.Empleado.Update(empleado);    
             if (result.Correct) 
             {
@@ -43,8 +50,8 @@ namespace SLWEBAPI.Controllers
 
         }
 
-        [Route("api/empleado/delete")]
-        [HttpGet]  
+        [Route("{NumeroEmpleado}")]
+        [HttpDelete]  
 
         public IHttpActionResult Delete (string NumeroEmpleado)
         {
@@ -62,11 +69,21 @@ namespace SLWEBAPI.Controllers
             }
         }
 
-        [Route("api/empleado/getall")]
+        [Route("getall/{IdEmpresa}/{Nombre}")]
         [HttpGet]
-        public IHttpActionResult GetAll(int IdEmpresa, string Nombre)
+        public IHttpActionResult GetAll(int? IdEmpresa, string Nombre, [FromBody] ML.Empleado empleado)
         {
-            ML.Result result = BL.Empleado.GetAll(IdEmpresa, Nombre);
+            if (IdEmpresa == 0)
+            {
+                IdEmpresa = 0;
+
+            }
+            if (Nombre == null)
+            {
+                empleado.Nombre = "";
+
+            }
+            ML.Result result = BL.Empleado.GetAll(IdEmpresa.Value, Nombre);
             if(result.Correct) 
             {
                 return Content(HttpStatusCode.OK, result);
@@ -79,7 +96,7 @@ namespace SLWEBAPI.Controllers
         }
 
 
-        [Route("api/empleado/getbyid")]
+        [Route("{NumeroEmpleado}")]
         [HttpGet]
         public IHttpActionResult GetById(string NumeroEmpleado)
         {

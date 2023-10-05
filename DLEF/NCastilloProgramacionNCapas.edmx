@@ -255,7 +255,6 @@
           <Parameter Name="Genero" Type="varchar" Mode="In" />
           <Parameter Name="Telefono" Type="varchar" Mode="In" />
           <Parameter Name="Rfc" Type="varchar" Mode="In" />
-          <Parameter Name="NumeroEmpleado" Type="varchar" Mode="In" />
         </Function>
         <Function Name="EmpleadoAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NumeroEmpleado" Type="varchar" Mode="In" />
@@ -554,9 +553,6 @@
             <Parameter Name="Foto" Mode="In" Type="String" />
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="EmpleadoDelete">
-          <Parameter Name="NumeroEmpleado" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="EmpleadoGetById" ReturnType="Collection(NCastilloProgramacionNCapasModel.EmpleadoGetById_Result)">
           <Parameter Name="NumeroEmpleado" Mode="In" Type="String" />
           </FunctionImport>
@@ -592,11 +588,19 @@
           <FunctionImport Name="DependienteGetByIdEmpleado" ReturnType="Collection(NCastilloProgramacionNCapasModel.DependienteGetByIdEmpleado_Result)">
           <Parameter Name="NumeroEmpleado" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DependienteDelete">
-          <Parameter Name="IdDependiente" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="DependienteGetById" ReturnType="Collection(NCastilloProgramacionNCapasModel.DependienteGetById_Result)">
           <Parameter Name="IdDependiente" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DependienteUpdate">
+            <Parameter Name="IdDependiente" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+            <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="EstadoCivil" Mode="In" Type="String" />
+            <Parameter Name="Genero" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Rfc" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DependienteAdd">
             <Parameter Name="Nombre" Mode="In" Type="String" />
@@ -609,16 +613,10 @@
             <Parameter Name="Rfc" Mode="In" Type="String" />
             <Parameter Name="NumeroEmpleado" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DependienteUpdate">
+          <FunctionImport Name="DependienteDelete">
             <Parameter Name="IdDependiente" Mode="In" Type="Int32" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
-            <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
-            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
-            <Parameter Name="EstadoCivil" Mode="In" Type="String" />
-            <Parameter Name="Genero" Mode="In" Type="String" />
-            <Parameter Name="Telefono" Mode="In" Type="String" />
-            <Parameter Name="Rfc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EmpleadoDelete">
             <Parameter Name="NumeroEmpleado" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
@@ -1209,7 +1207,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="EmpleadoAdd" FunctionName="NCastilloProgramacionNCapasModel.Store.EmpleadoAdd" />
-          <FunctionImportMapping FunctionImportName="EmpleadoDelete" FunctionName="NCastilloProgramacionNCapasModel.Store.EmpleadoDelete" />
           <FunctionImportMapping FunctionImportName="EmpleadoGetById" FunctionName="NCastilloProgramacionNCapasModel.Store.EmpleadoGetById">
             <ResultMapping>
               <ComplexTypeMapping TypeName="NCastilloProgramacionNCapasModel.EmpleadoGetById_Result">
@@ -1335,7 +1332,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="DependienteDelete" FunctionName="NCastilloProgramacionNCapasModel.Store.DependienteDelete" />
           <FunctionImportMapping FunctionImportName="DependienteGetById" FunctionName="NCastilloProgramacionNCapasModel.Store.DependienteGetById">
             <ResultMapping>
               <ComplexTypeMapping TypeName="NCastilloProgramacionNCapasModel.DependienteGetById_Result">
@@ -1351,8 +1347,10 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="DependienteAdd" FunctionName="NCastilloProgramacionNCapasModel.Store.DependienteAdd" />
           <FunctionImportMapping FunctionImportName="DependienteUpdate" FunctionName="NCastilloProgramacionNCapasModel.Store.DependienteUpdate" />
+          <FunctionImportMapping FunctionImportName="DependienteAdd" FunctionName="NCastilloProgramacionNCapasModel.Store.DependienteAdd" />
+          <FunctionImportMapping FunctionImportName="DependienteDelete" FunctionName="NCastilloProgramacionNCapasModel.Store.DependienteDelete" />
+          <FunctionImportMapping FunctionImportName="EmpleadoDelete" FunctionName="NCastilloProgramacionNCapasModel.Store.EmpleadoDelete" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -4,13 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h4>Empleado @Model.Empleado.NumeroEmpleado</h4>
+
 <h2 class="text-center">Formulario Dependiente</h2>
 
 @using (Html.BeginForm("Form", "Dependiente", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(model => model.IdDependiente)
     @Html.HiddenFor(model => model.Empleado.NumeroEmpleado)
-
+    
     <div class="row">
         <div class="col-md-4">
             @Html.LabelFor(model => model.Nombre)

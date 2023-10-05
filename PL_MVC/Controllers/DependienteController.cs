@@ -60,8 +60,7 @@ namespace PL_MVC.Controllers
 
         public ActionResult Form(ML.Dependiente dependiente)
         {
-            //Linea agregada para instancia numero de empleado
-            dependiente.Empleado = new ML.Empleado();
+            
             
             if (dependiente.IdDependiente == 0)
             {
@@ -88,7 +87,7 @@ namespace PL_MVC.Controllers
 
                 if (result.Correct)
                 {
-                    //ViewBag.IdEmpleado = dependiente.Empleado.NumeroEmpleado;
+                    ViewBag.IdEmpleado = dependiente.Empleado.NumeroEmpleado;
                     ViewBag.Mensaje = "Se ha completado la actualizacion";
                     
                     
